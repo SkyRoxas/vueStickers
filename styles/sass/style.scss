@@ -1,0 +1,60 @@
+@import "bootstrap/scss/bootstrap";
+
+@import "base/_import";
+
+@import "components/import";
+
+@import "layouts/import";
+
+
+$colorBlack : #3E3A39;
+
+$colorBlue : #A5D8E6;
+$colorYellow : #FFEB67;
+$colorRed : #EF898C;
+$colorGreen : #CBE196;
+
+*,*:after,*:before {
+  //border: 1px solid
+}
+
+html,body {
+  background-color: $colorBlack;
+}
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+html,body {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 500;
+  color: #44403f;
+}
+
+@mixin size ($w,$h:$w) {
+  width: $w;
+  height: $h;
+}
+
+.stickers {
+  @include size(240px);
+  font-size: calc(240px / 4 - 15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $colorYellow;
+  letter-spacing: 10px;
+  box-shadow: 5px 5px 40px rgba(0,0,0,0.4);
+  position: absolute;
+  transition: background-color 0.6s;
+  cursor: pointer;
+}
+
+ul.dataList {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+}
+
+div.colorblock{
+  @include size(30px);
+}

@@ -1,0 +1,12 @@
+#app
+  .stickers( v-for = "(p , pid ) in stickers",
+            @mousedown ="selectId($event,pid)",:style ="stickersCss(p)")
+    .text {{p.text}}
+  
+    
+  ul.dataList
+    li( v-for = "(p , pid ) in stickers")
+      input(v-model = "p.text")
+      div.d-flex
+        .colorblock( v-for = "color in colorList",:style = '{backgroundColor:color.color}',@click ="p.color = color.name")
+    button(@click = "addpost()") create stickers
