@@ -1,12 +1,18 @@
 #app
-  .stickers( v-for = "(p , pid ) in stickers",
-            @mousedown ="selectId($event,pid)",:style ="stickersCss(p)")
-    .text {{p.text}}
-  
+  transition-group(name='fade',tag = 'ul')
+    li.stickers( v-for = "(p , pid ) in stickers",
+            :key ='pid',
+            :style ="stickersCss(p)",
+            @mousedown ="selectId($event,pid)")
+      .text(:style ="stickersFontSize(p)") {{p.text}}
+      div.stickers__nav.d-flex
+        .colorblock.nav( v-for = "color in colorList",:style = '{backgroundColor:color.color}',@click ="p.color = color.name")
+        button.nav(@click = function() {stickers.splice(pid,1)}) delete
     
   ul.dataList
     li( v-for = "(p , pid ) in stickers")
       input(v-model = "p.text")
       div.d-flex
         .colorblock( v-for = "color in colorList",:style = '{backgroundColor:color.color}',@click ="p.color = color.name")
+        button(@click = function() {stickers.splice(pid,1)}) delete
     button(@click = "addpost()") create stickers

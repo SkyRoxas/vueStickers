@@ -37,7 +37,6 @@ html,body {
 
 .stickers {
   @include size(240px);
-  font-size: calc(240px / 4 - 15px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,6 +48,11 @@ html,body {
   cursor: pointer;
 }
 
+.stickers__nav{
+  position: absolute;
+  bottom: -40px;
+}
+
 ul.dataList {
   position: fixed;
   right: 20px;
@@ -57,4 +61,15 @@ ul.dataList {
 
 div.colorblock{
   @include size(30px);
+}
+
+.text {
+  pointer-events:none;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  transform: scale(0.1);
 }

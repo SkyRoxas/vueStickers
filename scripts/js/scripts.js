@@ -55,14 +55,29 @@ var Vm = new Vue({
       return {
         'top': p.pos.y + 'px',
         'left': p.pos.x + 'px',
-        'font-size': (240 / p.text.length - 20) + 'px',
         'background-color': this.colorList.find(o => o.name === p.color).color
       }
     },
+    stickersFontSize (p) {
+      return {
+        'font-size': (240 / p.text.length - 20) + 'px'
+      }
+    },
     selectId (event, id) {
-      this.nowId = id
-      this.startPos.x = event.offsetX
-      this.startPos.y = event.offsetY
+      var k = function () {
+        for (var i = 0; i < event.srcElement.classList.length; i++) {
+          if (event.srcElement.classList[i] === 'nav') {
+            return 1
+          }
+        }
+        return 0
+      }
+
+      if (!k()) {
+        this.nowId = id
+        this.startPos.x = event.offsetX
+        this.startPos.y = event.offsetY
+      }
     },
     getColor () {
 
@@ -85,5 +100,5 @@ window.onmousemove = function (event) {
 
 window.onmouseup = function (event) {
   Vm.nowId = -1
-  console.log(Vm.nowId)
+  // console.log(Vm.nowId)
 }
