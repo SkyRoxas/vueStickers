@@ -53,6 +53,16 @@ html,body {
   bottom: -40px;
 }
 
+.nav{
+  @include size(30px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color:#FFFFFF;
+
+}
+
 ul.dataList {
   position: fixed;
   right: 20px;
@@ -61,6 +71,7 @@ ul.dataList {
 
 div.colorblock{
   @include size(30px);
+  margin-right: 5px;
 }
 
 .text {
