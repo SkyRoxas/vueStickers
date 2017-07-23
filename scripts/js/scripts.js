@@ -19,16 +19,16 @@
    'el': '#app',
    'data': {
      stickers: [
-       {
-         text: '文字',
-         color: 'yellow',
-         pos: {x: 20, y: 10}
-       },
-       {
-         text: '文',
-         color: 'blue',
-         pos: {x: 20, y: 300}
-       }
+      //  {
+      //    text: '文字',
+      //    color: 'yellow',
+      //    pos: {x: 20, y: 10}
+      //  },
+      //  {
+      //    text: '文',
+      //    color: 'blue',
+      //    pos: {x: 20, y: 300}
+      //  }
      ],
      colorList: [
        {
@@ -62,15 +62,10 @@
    'watch': {
      mousePos () {
        if (this.nowId !== -1) {
-         //vue data
-         // this.stickers[this.nowId].pos.x = this.mousePos.x - this.startPos.x
-         // this.stickers[this.nowId].pos.y = this.mousePos.y - this.startPos.y
-
-         //firebase data
-
          this.stickers[this.nowId].pos.x = this.mousePos.x - this.startPos.x
          this.stickers[this.nowId].pos.y = this.mousePos.y - this.startPos.y
 
+         // firebase data
          stickersRef.child(this.nowId).set(this.stickers[this.nowId])
        }
      }
@@ -105,6 +100,14 @@
        }
      },
      addpost () {
+       // firebase data
+       stickersRef.push(
+         {
+           text: '文字',
+           color: 'yellow',
+           pos: {x: 200 + Math.random() * 200, y: 200 + Math.random() * 200}
+         }
+      )
       // vue data
       //  this.stickers.push(
       //    {
@@ -113,15 +116,6 @@
       //      pos: {x: 200 + Math.random() * 200, y: 200 + Math.random() * 200}
       //    }
       // )
-
-      // firebase data
-       stickersRef.push(
-         {
-           text: '文字',
-           color: 'yellow',
-           pos: {x: 200 + Math.random() * 200, y: 200 + Math.random() * 200}
-         }
-     )
      },
      dropSticker (pid) {
        // vue data
@@ -133,12 +127,16 @@
      setText (pid) {
        let text = prompt('請輸入文字', this.stickers[pid].text)
        if (text) {
-         // vue data
-         // this.stickers[pid].text = text
-
-         // firebase data
-         stickersRef.child(pid).text = text
+         this.stickers[pid].text = text
        }
+       // firebase data
+       stickersRef.child(pid).set(this.stickers[pid])
+     },
+     setColor (pid, colorname) {
+       // p.color = color.name
+       this.stickers[pid].color = colorname
+
+       stickersRef.child(pid).set(this.stickers[pid])
      }
    }
  })

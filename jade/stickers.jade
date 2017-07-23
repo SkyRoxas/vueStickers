@@ -6,7 +6,7 @@
             @mousedown ="selectId($event,pid)")
       .text(:style ="stickersFontSize(p)") {{p.text}}
       div.stickers__nav.d-flex
-        .colorblock.nav( v-for = "color in colorList",:style = '{backgroundColor:color.color}',@click ="p.color = color.name")
+        .colorblock.nav( v-for = "color in colorList",:style = '{backgroundColor:color.color}',@click ="setColor(pid,color.name)")
         .nav(@click = "setText(pid)")
           i.fa.fa-pencil
         .nav(@click = 'dropSticker(pid)')
