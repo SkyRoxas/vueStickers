@@ -129,13 +129,11 @@
        if (text) {
          this.stickers[pid].text = text
        }
-       // firebase data
-       stickersRef.child(pid).set(this.stickers[pid])
      },
      setColor (pid, colorname) {
-       // p.color = color.name
        this.stickers[pid].color = colorname
-
+     },
+     firebaseUpdate (pid) {
        stickersRef.child(pid).set(this.stickers[pid])
      }
    }

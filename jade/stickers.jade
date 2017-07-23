@@ -6,8 +6,8 @@
             @mousedown ="selectId($event,pid)")
       .text(:style ="stickersFontSize(p)") {{p.text}}
       div.stickers__nav.d-flex
-        .colorblock.nav( v-for = "color in colorList",:style = '{backgroundColor:color.color}',@click ="setColor(pid,color.name)")
-        .nav(@click = "setText(pid)")
+        .colorblock.nav( v-for = "color in colorList",:style = '{backgroundColor:color.color}',@click ="setColor(pid,color.name);firebaseUpdate(pid)")
+        .nav(@click = "setText(pid);firebaseUpdate(pid)")
           i.fa.fa-pencil
         .nav(@click = 'dropSticker(pid)')
           i.fa.fa-trash-o
@@ -16,6 +16,6 @@
     li( v-for = "(p , pid ) in stickers")
       input(v-model = "p.text")
       div.d-flex
-        .colorblock( v-for = "color in colorList",:style = '{backgroundColor:color.color}',@click ="p.color = color.name")
-        button(@click = function() {stickers.splice(pid,1)}) delete
+        .colorblock( v-for = "color in colorList",:style = '{backgroundColor:color.color}',@click ="setColor(pid,color.name);firebaseUpdate(pid)")
+        button(@click = "dropSticker(pid)") delete
     button(@click = "addpost()") create stickers
